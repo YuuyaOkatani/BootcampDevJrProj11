@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <main class="container">
+        <section>
+            <div class="display-6">
+                Formulário de cadastro:
+            </div>
+
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <form #formProduct="ngForm">
+                        <div class="row mb-3 mt-3">
+                            <label for="inputName" class="col-sm-2 col-form-label">Nome:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputName" name="name" [(ngModel)]="product.name" type="text" required>
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-3 mt-3">
+                            <label for="inputDescription" class="col-sm-2 col-form-label">Descrição:</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" id="inputDescription" name="desc" [(ngModel)]="product.desc" type="text" required>
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-3 mt-3">
+                            <label for="inputPrice" class="col-sm-2 col-form-label">Preço:</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" id="inputPrice" name="price" [(ngModel)]="product.price " type="text" required>
+                            </div>
+
+                            <label for="selectCategory" class="col-sm-2 col-form-label">Categoria:</label>
+                            <div class="col-sm-4">
+                                <select  class="form-select" aria-label="Seleciona uma categoria" id="selectCategory" name="category" [(ngModel)]="product.category"
+                                    required>
+                                    <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+                                    
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-3 mt-3">
+                            <label class="col-sm-2 col-form-label">Opções:</label>
+                            <div class="col-sm-4">
+                                <div class="form-check">
+                                    <input class="form-check-input " name="promotion" [(ngModel)]="product.promotion" type="checkbox" value="" id="checkBoxPromotion">
+                                    <label class="form-check-label" for="checkBoxPromotion">
+                                        Promoção
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="novo" [(ngModel)]="product.novo" type="checkbox" value="" id="CheckBoxNewProduct">
+                                    <label class="form-check-label" for="CheckBoxNewProduct">
+                                        Lançamento
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 mt-3">
+                            <button type="button" class="btn btn-primary col-4 col-md-2 col-xxl-1" (click)="save()"  [disabled]="formProduct.invalid"> cadastrar</button>
+                        </div>
+
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+
+
+
+</body>
+</html>
