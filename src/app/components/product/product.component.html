@@ -16,45 +16,64 @@
 
             <div class="row">
                 <div class="col-md-10 offset-md-1">
-                    <form #formProduct="ngForm">
+                    <form [formGroup]="formGroupProduct" #ngFormGroupProduct='ngForm'>
                         <div class="row mb-3 mt-3" *ngIf="product.id">
                             <label for="inputId" class="col-sm-2 col-form-label">Id:</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="inputId" name="id" [(ngModel)]="product.id" type="text" disabled>
+                                <input class="form-control" id="inputId" name="id" formControlName="id"  type="text">
                             </div>
 
                         </div>
                         <div class="row mb-3 mt-3">
                             <label for="inputName" class="col-sm-2 col-form-label">Nome:</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="inputName" name="name" [(ngModel)]="product.name" type="text" required>
+                                <input class="form-control" id="inputName" name="name" formControlName="name" type="text">
+                                <div *ngIf="ngFormGroupProduct.submitted">
+                                    <small *ngIf="pfgName?.errors?.['required']" class="form-text text-danger ">*Nome é requerido!</small>
+                                    <small  *ngIf="pfgName?.errors?.['minLength']"  class="form-text text-danger ">* Tamanho mínimo de 3 caracteres!</small>
+    
+                                </div>
                             </div>
+                            
 
                         </div>
 
                         <div class="row mb-3 mt-3">
                             <label for="inputDescription" class="col-sm-2 col-form-label">Descrição:</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="inputDescription" name="desc" [(ngModel)]="product.desc" type="text" required>
+                                <input class="form-control" id="inputDescription" name="desc" formControlName="desc" type="text" >
+                                <div *ngIf="ngFormGroupProduct.submitted">
+                                    <small *ngIf="pfgDesc?.errors?.['required']" class="form-text text-danger ">*Nome é requerido!</small>
+                                    <small *ngIf="pfgDesc?.errors?.['minLength']" class="form-text text-danger ">*Tamanho é pequeno demais!</small>
+                                </div>
                             </div>
+                            
 
                         </div>
 
                         <div class="row mb-3 mt-3">
                             <label for="inputPrice" class="col-sm-2 col-form-label">Preço:</label>
                             <div class="col-sm-4">
-                                <input class="form-control" id="inputPrice" name="price" [(ngModel)]="product.price " type="text" required>
+                                <input class="form-control" id="inputPrice" name="price" formControlName="price" type="text" >
+                                <div *ngIf="ngFormGroupProduct.submitted">
+                                    <small *ngIf="pfgPrice?.errors?.['required']" class="form-text text-danger ">*Preço é requerido!</small>
+                                </div>
                             </div>
+                            
 
                             <label for="selectCategory" class="col-sm-2 col-form-label">Categoria:</label>
                             <div class="col-sm-4">
-                                <select  class="form-select" aria-label="Seleciona uma categoria" id="selectCategory" name="category"
-                                 [(ngModel)]="product.category"
+                                <select  class="form-select" aria-label="Seleciona uma categoria" formControlName="category" id="selectCategory" name="category"
+                                 
                                  [compareWith]="selectedCategory"
-                                    required>
+                                    >
                                     <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
                                     
                                 </select>
+                                <div *ngIf="ngFormGroupProduct.submitted">
+                                    <small *ngIf="pfgCat?.errors?.['required']" class="form-text text-danger ">*Categoria é requerido!</small>
+                                </div>
+    
                             </div>
 
                         </div>
@@ -63,13 +82,13 @@
                             <label class="col-sm-2 col-form-label">Opções:</label>
                             <div class="col-sm-4">
                                 <div class="form-check">
-                                    <input class="form-check-input " name="promotion" [(ngModel)]="product.promotion" type="checkbox" value="" id="checkBoxPromotion">
+                                    <input class="form-check-input " name="promotion" formControlName="promotion"  type="checkbox" value="" id="checkBoxPromotion">
                                     <label class="form-check-label" for="checkBoxPromotion">
                                         Promoção
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" name="novo" [(ngModel)]="product.novo" type="checkbox" value="" id="CheckBoxNewProduct">
+                                    <input class="form-check-input" name="novo" formControlName="novo"  type="checkbox" value="" id="CheckBoxNewProduct">
                                     <label class="form-check-label" for="CheckBoxNewProduct">
                                         Lançamento
                                     </label>
@@ -77,7 +96,7 @@
                             </div>
                         </div>
                         <div class="row mb-3 mt-3">
-                            <button type="button" class="btn btn-success col-4 col-md-2 col-xxl-1 me-1" (click)="save()"  [disabled]="formProduct.invalid"> Salvar</button>
+                            <button type="button" class="btn btn-success col-4 col-md-2 col-xxl-1 me-1" (click)="save()"> Salvar</button>
                             <button type="button" class="btn btn-danger col-4 col-md-2 col-xxl-1" (click)="cancel()">Cancelar</button>
                         </div>
 

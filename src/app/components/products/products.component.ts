@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
 import { Product } from '../../Product';
 import { Category } from '../../Category';
 import { CategoryService } from '../../services/category.service';
@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit{
   products: Product[] =[]; 
 
   product: Product = {} as Product; 
@@ -26,6 +26,7 @@ export class ProductsComponent implements OnInit {
     private modalService: NgbModal,
   
   ) { }
+
 
   ngOnInit(): void {
     this.loadCategories()

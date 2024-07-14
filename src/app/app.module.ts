@@ -35,7 +35,6 @@ registerLocaleData(localePt, 'pt');
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule,
     HttpClientModule,
     ReactiveFormsModule
 
