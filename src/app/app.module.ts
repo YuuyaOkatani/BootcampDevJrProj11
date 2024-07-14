@@ -11,9 +11,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './home/home.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -23,14 +26,18 @@ registerLocaleData(localePt, 'pt');
     HeaderComponent,
     ProductComponent,
     ProductsComponent,
-    FooterComponent
+    FooterComponent,
+    NavbarComponent,
+    HomeComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
 
   ],
   providers: [
